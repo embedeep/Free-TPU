@@ -21,19 +21,24 @@ Currently, we DO NOT release the SDK for FREE TPU. Instead, we provide the BIN a
 ### Difference between FREE TPU and EEP Commercial TPU
 ||FREE TPU|EEP TPU
 :---:|:---:|:---:
-TPU Layers|only 10|more than 35|
-Frequency|20MHz|200MHz
+TPU Layers|10|35|
+Frequency|20 MHz|200 MHz
 On Chip Memory|256 KByte|512 KByte
 
 ### NN network
 Network|Download|Inference time<br>(Zynq-7020 with FREE TPU)|Inference time<br>(Zynq-7035 with Commercial TPU)
 :---:|:---:|:---:|:---:
-MobileNetV1|[caffemodel](models/MobileNetV1)
-MobileNetV2|[caffemodel](models/MobileNetV2)
-InceptionV3|[caffemodel](models/InceptionV3)
-Resnet-50|[caffemodel](models/InceptionV3)
-MobileNet_YOLOV3|[caffemodel](models/MobileNet_YOLOV3)
-ICNet|[caffemodel](models/ICNet)
+[MobileNetV1](model/MobileNet)|[BIN](bins/MobileNetV1)
+[MobileNetV2](model/MobileNet)|[BIN](bins/MobileNetV2)
+[InceptionV3](model/InceptionV3)|[BIN](bins/InceptionV3)
+[Resnet-50](model/Resnet-50)|[BIN](bins/InceptionV3)
+[MobileNet_YOLOV3](model/MobileNet_YOLOV3)|[BIN](bins/MobileNet_YOLOV3)
+[ICNet](model/ICNet)|[BIN](models/ICNet)
+
+### FPGA bit
+FPGA device|Download
+:---:|:---:
+Xilinx Zynq-7020|[BIT](bits/zynq-7020)
 
 ### Contact
 Questions can be left as issues in the repository. We will be happy to answer them.
