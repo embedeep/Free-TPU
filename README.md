@@ -28,7 +28,7 @@ Frequency|50 MHz|200 MHz
 On Chip Memory|256 KByte|512 KByte
 
 ### NN network
-Network|Download|Inference time<br>(Zynq-7020 with FREE TPU)|Inference time<br>(Zynq-7035 with Commercial TPU)|Accelerate rate<br>(ARM Cortex A7x1 800MHZ)
+Network|Download|Inference time<br>(FREE TPU)|Inference time<br>(EEP TPU)|Inference time<br>(800MHZ ARM A7x1 within Zynq)
 :---:|:---:|:---:|:---:|:---:
 [lenet-5](model/Lenet-5)|[BIN](bins/Lenet-5)
 [MobileNetV1](model/MobileNet)|[BIN](bins/MobileNetV1)
@@ -38,7 +38,7 @@ Network|Download|Inference time<br>(Zynq-7020 with FREE TPU)|Inference time<br>(
 [MobileNet_YOLOV3](model/MobileNet_YOLOV3)|[BIN](bins/MobileNet_YOLOV3)
 [ICNet](model/ICNet)|[BIN](models/ICNet)
 
-For comparison, you can refer to the HLS implementation of [lenet-5](https://github.com/changwoolee/lenet5_hls), which using almost all resource of zynq-7020 FPGA, and only x3.63 faster than cpu (ARM Cortex A7x1 800MHZ)
+For comparison, you can refer to the [HLS implementation of lenet-5](https://github.com/changwoolee/lenet5_hls), which run at 100MHZ, use almost all resource of zynq-7020 FPGA, and only x3.63 faster than cpu (800MHZ ARM A7x1 within Zynq)
 
 ### FPGA bit
 FPGA device|Download
