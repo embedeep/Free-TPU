@@ -28,14 +28,17 @@ Frequency|50 MHz|200 MHz
 On Chip Memory|256 KByte|512 KByte
 
 ### NN network
-Network|Download|Inference time<br>(Zynq-7020 with FREE TPU)|Inference time<br>(Zynq-7035 with Commercial TPU)
-:---:|:---:|:---:|:---:
+Network|Download|Inference time<br>(Zynq-7020 with FREE TPU)|Inference time<br>(Zynq-7035 with Commercial TPU)|Accelerate rate<br>(ARM Cortex A7x1 800MHZ)
+:---:|:---:|:---:|:---:|:---:
+[lenet-5](model/Lenet-5)|[BIN](bins/Lenet-5)
 [MobileNetV1](model/MobileNet)|[BIN](bins/MobileNetV1)
 [MobileNetV2](model/MobileNet)|[BIN](bins/MobileNetV2)
 [InceptionV3](model/InceptionV3)|[BIN](bins/InceptionV3)
 [Resnet-50](model/Resnet-50)|[BIN](bins/InceptionV3)
 [MobileNet_YOLOV3](model/MobileNet_YOLOV3)|[BIN](bins/MobileNet_YOLOV3)
 [ICNet](model/ICNet)|[BIN](models/ICNet)
+
+For comparison, you can refer to the HLS implementation of [lenet-5](https://github.com/changwoolee/lenet5_hls), which using almost all resource of zynq-7020 FPGA, and only x3.63 faster than cpu (ARM Cortex A7x1 800MHZ)
 
 ### FPGA bit
 FPGA device|Download
@@ -55,7 +58,9 @@ copy SD_card/* your_sd_card_path
 ```
 
 3. insert the SD card into Zynq boad, launch system, connect the system through SSH, and excute the run command
-```free_tpu_runtime --bin --image```
+```
+free_tpu_runtime --bin --image
+```
 
 4. if everything right, you will see the result through terminal and saved image. Enjoy!
 
