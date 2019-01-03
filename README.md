@@ -1,7 +1,7 @@
-# FREE TPU (under construction)
-Free TPU IP for FPGA (default Xilinx Zynq-7020), More detail at http://www.embedeep.com
+# FREE TPU (under construction) 
+***Free TPU*** is the free version of a commercial TPU design for Deep Learning Inference applicaitons, which can deploy at any FPGA device including Xilinx Zynq-7020 (a good choice for production). Actually, not just only a TPU logic design, the ***Free TPU*** also include a Deep Learning Inference Framework ***supprting all caffe layers***, which can run at any ARM CPU (such as the ARM A9 of Zynq-7020). TPU and CPU co-work with each other under the schedule of the Deep Learning Inference Framework (any order of alternation). Then, you can do anything you want with *FREE!* (we release the ***Free TPU*** with MIT LICENSE). More details, please visit http://www.embedeep.com
 
-### Supporting Layers
+## Supporting Layers
 Layer Type|Device|Limitation|Notes
 :---:|:---:|:---:|:---:
 Convolution|TPU|kernal<=32,stride<=8
@@ -16,54 +16,68 @@ Relu|TPU|No
 Prelu|TPU|No
 Others|CPU|No|All Layers in CAFFE
 
-### Software Development Kits
-Currently, we DO NOT release the SDK for FREE TPU. Instead, we provide the BIN and corresponding MODEL file of typical NN network. You can use the BIN to launch a NN algorithm (such as detection based on YOLOV3), or, you also can train your own Datasets using the MODEL (such as the yolov3_train.prototxt at CAFFE).
+## Software Development Kits 
+***Free TPU SDK*** import the trained model from CAFFE directly to generate the BIN file. No furter re-training or fine-tuning necessary. However, we DO NOT releas the SDK for FREE TPU yet. Instead, we provide the BIN and corresponding MODEL file of typical NN network. You can use the BIN to launch a NN algorithm (such as detection based on YOLOV3). Or, you also can ***train*** your own Datasets using the MODEL, and generate your ***own BIN*** through a simple tools (release later) by merging *your-own.caffemodel* and the *old BIN*. Now, your onw BIN is available for any usage!
 
-### Difference between FREE TPU and EEP Commercial TPU
+## Difference between FREE TPU and Commercial EEP TPU
 ||FREE TPU|EEP TPU
 :---:|:---:|:---:
-TPU supporting Layers|10|35|
-MACs|152 FP16|576 FP16
-Frequency|50 MHz|200 MHz
-On Chip Memory|256 KByte|512 KByte
+Target Device|Zynq FPGA|any FPGA and ASIC
+TPU supporting Layers|10|35
+MACs|152 FP16|Configurable<br>(typical 576 FP16 or INT8)
+Frequency|50 MHz|200 MHzS
+AXI port|1|2
+Memory Model|Shared|Shared or Dedicated
+On Chip Memory|256 KByte|Configurable<br>(typical 512 KByte)
+Functionality|Same|Same
+API|Same|Same
+From the view of users, *Free-TPU* and *EEP-TPU* has the same functionality, but with different inference time. If the inference time of *Free-TPU* is NOT good enough for your applications, you can contact us in any time. We will be happy to share our experience about algorithm, software or hardware with you.
 
-### NN network
-Network|Download|Inference time<br>(FREE TPU)|Inference time<br>(EEP TPU)|Inference time<br>(800MHZ ARM A7x1 within Zynq)
+## Development Resource 
+### NN network 
+Network MODEL|BIN|Inference time<br>(50MHZ FREE TPU)|Inference time<br>(200MHZ EEP TPU)|Inference time<br>(800MHZ ARM A9x1 within Zynq)
 :---:|:---:|:---:|:---:|:---:
-[lenet-5](model/Lenet-5)|[BIN](bins/Lenet-5)
-[MobileNetV1](model/MobileNet)|[BIN](bins/MobileNetV1)
-[MobileNetV2](model/MobileNet)|[BIN](bins/MobileNetV2)
-[InceptionV3](model/InceptionV3)|[BIN](bins/InceptionV3)
-[Resnet-50](model/Resnet-50)|[BIN](bins/InceptionV3)
-[MobileNet_YOLOV3](model/MobileNet_YOLOV3)|[BIN](bins/MobileNet_YOLOV3)
-[ICNet](model/ICNet)|[BIN](models/ICNet)
+[lenet-5](Deep_Learning_Algorithm/models/lenet-5.prototxt)|[BIN](Deep_Learning_Algorithm/bins/)
+[MobileNetV1](Deep_Learning_Algorithm/models/mobilenet_v1.prototxt)|[BIN](Deep_Learning_Algorithm/bins/)
+[MobileNetV2](Deep_Learning_Algorithm/models/mobilenet_v2.prototxt)|[BIN](Deep_Learning_Algorithm/bins/)
+[InceptionV3](Deep_Learning_Algorithm/models/inception_v3.prototxt)|not ready
+[Resnet-50](Deep_Learning_Algorithm/models/ResNet_50.prototxt)|not ready
+[MobileNet_YOLOV3](Deep_Learning_Algorithm/models/mobilenet_yolov3_lite.prototxt)|not ready
+[ICNet](Deep_Learning_Algorithm/models/icnet.prototxt)|not ready
 
-For comparison, you can refer to the [HLS implementation of lenet-5](https://github.com/changwoolee/lenet5_hls), which run at 100MHZ, use almost all resource of zynq-7020 FPGA, and only x3.63 faster than cpu (800MHZ ARM A7x1 within Zynq)
+For comparison, you can refer to the [HLS implementation of lenet-5](https://github.com/changwoolee/lenet5_hls), which run at 100MHZ, use almost all resource of zynq-7020 FPGA, and only x3.63 faster than cpu (800MHZ ARM A9x1 within Zynq)
 
 ### FPGA bit
-FPGA device|Download
-:---:|:---:
-Xilinx Zynq-7020|[BIT](bits/zynq-7020)
+FPGA device|BITS|Version
+:---:|:---:|:---:
+Xilinx Zynq-7020|[BIT](FPGA_Bits/zynq-7020)|v0.6.0
 
-FREE TPU DO NOT use any PIN from PL side of Zynq chip. Hence, in general, you can use any borad including a Xilinx Zynq-7000 series chip to run a FREE TPU design. If you are using other FPGA chips, please let us know through issues, we are happy to release corresponding BIT file if possible.
-## run steps
+FREE TPU DO NOT use any PIN from PL side of Zynq chip. Hence, in general, you can use any borad including a Xilinx Zynq-7000 series chip to run the FREE TPU. If you are using other FPGA chips, please let us know through issues, we are happy to release corresponding BIT file if possible.
+### Run steps
 1. Clone this repository：
 ```
 git clone https://github.com/embedeep/Free-TPU
 ```
 
-2. copy necessary files to SD card for Zynq system
+2. If you already has a Runnable Linux OS meeting the requirments declared in the [requirments.txt](Runtime_Software/requirments.txt) , copy necessary files (and replace the old one) to the SD card for Zynq system. If not, please refer to the steps from ***[Free-TPU-OS](https://github.com/embedeep/Free-TPU-OS)*** to prepare the Linux OS. 
 ```
-copy SD_card/* your_sd_card_path
+copy bits/zynq_7020/* root_of_sd_card/boot 
+(if you are using different chip, please replace zynq_7020 with corresponding chip name)
 ```
 
 3. insert the SD card into Zynq boad, launch system, connect the system through SSH, and excute the run command
 ```
-free_tpu_runtime --bin --image
+free_tpu_runtime --bin BIN_file --image IMG_file
 ```
 
-4. if everything right, you will see the result through terminal and saved image. Enjoy!
+4. if everything right, you will see the result through terminal, saved image, or remote PC (through python socket, please refer to [Remote Terminal](Runtime_Software/Remote_Terminal/)). Enjoy!
 
-### Contact
-Questions can be left as issues in the repository. We will be happy to answer them.
+## License
+MIT LICENSE
 
+## Contact
+Questions can email us or be left as issues in the repository, We will be happy to answer them.
+## Contributors 
+Luo (luohy@embedeep.com) <br>
+Zhou (zhouzx@embedeep.com) <br>
+He (herh@embedeep.com)
