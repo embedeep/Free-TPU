@@ -31,6 +31,7 @@ Memory Model|Shared|Shared or Dedicated
 On Chip Memory|256 KByte|Configurable<br>(typical 512 KByte)
 Functionality|Same|Same
 API|Same|Same
+
 From the view of users, *Free-TPU* and *EEP-TPU* has the same functionality, but with different inference time. If the inference time of *Free-TPU* is NOT good enough for your applications, you can contact us in any time. We will be happy to share our experience about algorithm, software or hardware with you.
 
 ## Development Resource 
