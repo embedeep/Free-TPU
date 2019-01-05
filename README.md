@@ -1,23 +1,23 @@
 # FREE TPU (under construction) 
-***Free TPU*** is the free version of a commercial TPU design for Deep Learning Inference applicaitons, which can deploy at any FPGA device including Xilinx Zynq-7020 (a good choice for production). Actually, not just only a TPU logic design, the ***Free TPU*** also include a Deep Learning Inference Framework ***supprting all caffe layers***, which can run at any ARM CPU (such as the ARM A9 of Zynq-7020). TPU and CPU co-work with each other under the schedule of the Deep Learning Inference Framework (any order of alternation). Then, you can do anything you want with *FREE!* (we release the ***Free TPU*** with MIT LICENSE). More details, please visit http://www.embedeep.com
+***Free TPU*** is the free version of a commercial TPU design for Deep Learning Inference applications, which can deploy at any FPGA device including Xilinx Zynq-7020 (a good choice for production). Actually, not just only a TPU logic design, the ***Free TPU*** also include a Deep Learning Inference Framework ***supporting all caffe layers***, which can run at any ARM CPU (such as the ARM A9 of Zynq-7020). TPU and CPU co-work with each other under the schedule of the Deep Learning Inference Framework (any order of alternation). Then, you can do anything you want with *FREE!* (We release the ***Free TPU*** with MIT LICENSE). More details, please visit http://www.embedeep.com
 
 ## Supporting Layers
 Layer Type|Device|Limitation|Notes
 :---:|:---:|:---:|:---:
-Convolution|TPU|kernal<=32,stride<=8
-Depthwise Convolution|TPU|kernal<=32,stride<=8
+Convolution|TPU|kernel<=32,stride<=8
+Depth-wise Convolution|TPU|kernel<=32,stride<=8
 Fully connected|TPU|No
-MAX/AVE Pooling|TPU|kernal<=32,stride<=8
+MAX/AVE Pooling|TPU|kernel<=32,stride<=8
 Batch Normalization|TPU|No
 Scale|TPU|No
-SUM/MUL/MAX Elementwise|TPU|No
+SUM/MUL/MAX Element-wise|TPU|No
 Concatenation|TPU|No
 Relu|TPU|No
 Prelu|TPU|No
 Others|CPU|No|All Layers in CAFFE
 
 ## Software Development Kits 
-***Free TPU SDK*** import the trained model from CAFFE directly to generate the BIN file. No furter re-training or fine-tuning necessary. However, we DO NOT releas the SDK for FREE TPU yet. Instead, we provide the BIN and corresponding MODEL file of typical NN network. You can use the BIN to launch a NN algorithm (such as detection based on YOLOV3). Or, you also can ***train*** your own Datasets using the MODEL, and generate your ***own BIN*** through a simple tools (release later) by merging *your-own.caffemodel* and the *old BIN*. Now, your onw BIN is available for any usage!
+***Free TPU SDK*** imports the trained model from CAFFE directly to generate the BIN file. No further re-training or fine-tuning necessary. However, we DO NOT release the SDK for FREE TPU yet. Instead, we provide the BIN and corresponding MODEL file of typical NN network. You can use the BIN to launch a NN algorithm (such as detection based on YOLOV3). Or, you also can ***train*** your own Datasets using the MODEL, and generate your ***own BIN*** through a simple tool (release later) by merging *your-own caffe-model* and the *old BIN*. Now, your own BIN is available for any usage!
 
 ## Difference between FREE TPU and Commercial EEP TPU
 ||FREE TPU|EEP TPU
@@ -53,31 +53,31 @@ FPGA device|BITS|Version
 :---:|:---:|:---:
 Xilinx Zynq-7020|[BIT](FPGA_Bits/zynq-7020)|v0.6.0
 
-FREE TPU DO NOT use any PIN from PL side of Zynq chip. Hence, in general, you can use any borad including a Xilinx Zynq-7000 series chip to run the FREE TPU. If you are using other FPGA chips, please let us know through issues, we are happy to release corresponding BIT file if possible.
+FREE TPU DO NOT use any PIN from PL side of Zynq chip. Hence, in general, you can use any board including a Xilinx Zynq-7000 series chip to run the FREE TPU. If you are using other FPGA chips, please let us know through issues, we are happy to release corresponding BIT file if possible.
 ### Run steps
 1. Clone this repository：
 ```
 git clone https://github.com/embedeep/Free-TPU
 ```
 
-2. If you already has a Runnable Linux OS meeting the requirments declared in the [requirments.txt](Runtime_Software/requirments.txt) , copy necessary files (and replace the old one) to the SD card for Zynq system. If not, please refer to the steps from ***[Free-TPU-OS](https://github.com/embedeep/Free-TPU-OS)*** to prepare the Linux OS. 
+2. If you already have a Runnable Linux OS meeting the requirements declared in the [requirements.txt](Runtime_Software/requirments.txt) , copy necessary files (and replace the old one) to the SD card for Zynq system. If not, please refer to the steps from ***[Free-TPU-OS](https://github.com/embedeep/Free-TPU-OS)*** to prepare the Linux OS. 
 ```
 copy bits/zynq_7020/* root_of_sd_card/boot 
-(if you are using different chip, please replace zynq_7020 with corresponding chip name)
+(If you are using different chip, please replace zynq_7020 with corresponding chip name)
 ```
 
-3. insert the SD card into Zynq boad, launch system, connect the system through SSH, and excute the run command
+3. Insert the SD card into Zynq board, launch system, connect the system through SSH, and execute the run command
 ```
 free_tpu_runtime --bin BIN_file --image IMG_file
 ```
 
-4. if everything right, you will see the result through terminal, saved image, or remote PC (through python socket, please refer to [Remote Terminal](Runtime_Software/Remote_Terminal/)). Enjoy!
+4. If everything right, you will see the result through terminal, saved image, or remote PC (through python socket, please refer to [Remote Terminal](Runtime_Software/Remote_Terminal/)). Enjoy!
 
 ## License
 MIT LICENSE
 
 ## Contact
-Questions can email us or be left as issues in the repository, We will be happy to answer them.
+Questions can email us or be left as issues in the repository, we will be happy to answer them.
 ## Contributors 
 Luo (luohy@embedeep.com) <br>
 Zhou (zhouzx@embedeep.com) <br>
