@@ -1,0 +1,1 @@
+sudo ../eepdemo_arm --bin ../bin/lenet/eeptpu.bin --image ./images/7.jpg --net lenet
