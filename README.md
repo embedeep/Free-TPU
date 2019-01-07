@@ -1,11 +1,11 @@
 # FREE TPU (under construction) 
-***Free TPU*** is the free version of a commercial TPU design for Deep Learning Inference applications, which can deploy at any FPGA device including Xilinx Zynq-7020 (a good choice for production). Actually, not just only a TPU logic design, the ***Free TPU*** also include a Deep Learning Inference Framework ***supporting all caffe layers***, which can run at any ARM CPU (such as the ARM A9 of Zynq-7020). TPU and CPU co-work with each other under the schedule of the Deep Learning Inference Framework (any order of alternation). Then, you can do anything you want with *FREE!* (We release the ***Free TPU*** with MIT LICENSE). More details, please visit http://www.embedeep.com
+***Free TPU*** is the free version of a commercial TPU design for Deep Learning EDGE Inference, which can deploy at any FPGA device including Xilinx Zynq-7020 (a good choice for production). Actually, not just only a TPU logic design, the ***Free TPU*** also include a Deep Learning Inference Framework ***supporting all caffe layers***, which can run at any ARM CPU (such as the ARM A9 of Zynq-7020). TPU and CPU co-work with each other under the schedule of the Deep Learning Inference Framework (any order of alternation). Then, you can do anything you want with *FREE!* (We release the ***Free TPU*** with MIT LICENSE). More details, please visit http://www.embedeep.com
 
 ## Supporting Layers
 Layer Type|Device|Limitation|Notes
 :---:|:---:|:---:|:---:
 Convolution|TPU|kernel<=32,stride<=8
-Depth-wise Convolution|TPU|kernel<=32,stride<=8
+Depthwise Convolution|TPU|kernel<=32,stride<=8
 Fully connected|TPU|No
 MAX/AVE Pooling|TPU|kernel<=32,stride<=8
 Batch Normalization|TPU|No
@@ -17,7 +17,7 @@ Prelu|TPU|No
 Others|CPU|No|All Layers in CAFFE
 
 ## Software Development Kits 
-***Free TPU SDK*** imports the trained model from CAFFE directly to generate the BIN file. No further re-training or fine-tuning necessary. However, we DO NOT release the SDK for FREE TPU yet. Instead, we provide the BIN and corresponding MODEL file of typical NN network. You can use the BIN to launch a NN algorithm (such as detection based on YOLOV3). Or, you also can ***train*** your own Datasets using the MODEL, and generate your ***own BIN*** through a simple tool (release later) by merging *your-own caffe-model* and the *old BIN*. Now, your own BIN is available for any usage!
+***Free TPU SDK*** imports the trained model from CAFFE directly to generate the BIN file. No further re-training or fine-tuning necessary. However, we DO NOT release the SDK for FREE TPU yet. Instead, we provide the BIN and corresponding MODEL file of typical NN network. You can use the BIN to launch a NN algorithm (such as detection with YOLOV3 or segmentation with ICNet). Or, you also can ***train*** with your own Datasets based on the MODEL, and generate your ***own BIN*** through a simple tool (release later) by merging *your-own caffe-model* and the *old BIN*. Then, your own BIN is available for any usage!
 
 ## Difference between FREE TPU and Commercial EEP TPU
 ||FREE TPU|EEP TPU
