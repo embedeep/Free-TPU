@@ -43,7 +43,7 @@ Free TPU supports 2 types of bin files:
 
 There are only a few Free-TPU bin files (*lenet / mobilenet_v1 / squeezenet*) on github for test.
 
-You can download **ALL Free-TPU bin files** from **[BaiDu Cloud](https://pan.baidu.com/s/1M3mcz8XVxJHIfwsAPLV0iw)** (Extraction code: ==w462==).
+You can download **ALL Free-TPU bin files** from **[BaiDu Cloud](https://pan.baidu.com/s/1M3mcz8XVxJHIfwsAPLV0iw)** (Extraction code: w462).
 
 #### Examples
 Suppose the demo have 3 folders: " images, tpubin, tpudemo ", and we are in tpudemo folder in command line.
