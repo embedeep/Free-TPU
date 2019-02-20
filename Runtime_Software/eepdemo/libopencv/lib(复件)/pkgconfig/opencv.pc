@@ -1,0 +1,13 @@
+# Package Information for pkg-config
+
+prefix=/media/herh/72E22BFB6F38C5A5/work/tools/opencv/for_raspberrypi/2.4.13.6/opencv-2.4.13.6/buildarm-turbo/install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir_old=${prefix}/include/opencv
+includedir_new=${prefix}/include
+
+Name: OpenCV
+Description: Open Source Computer Vision Library
+Version: 2.4.13.6
+Libs: -L${exec_prefix}/lib -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab -lrt -lpthread -lm -ldl
+Cflags: -I${includedir_old} -I${includedir_new}
