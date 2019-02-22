@@ -2,7 +2,7 @@
 Normally, *Free-TPU* can use all CAFFE based NN algorithm on github intuitively :
 1. Download **.prototxt and **.caffemodel
 2. Generate BIN file through *Free TPU SDK*
-3. Launch it by using `free_tpu_runtime --bin BIN_file --image IMG_file`
+3. Launch it by using `eepdemo_arm --bin BIN_file --image IMG_file`
 
 However, for now, we are not ready to release the Free TPU SDK for public usage. Instead, we provide the BIN and corresponding MODEL file of typical NN network here. For details about these algorithm, please refer to their original github sites:
 1. https://github.com/eric612/MobileNet-YOLO

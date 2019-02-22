@@ -1,77 +1,87 @@
-# FREE TPU (under construction) 
-***Free TPU*** is the free version of a commercial TPU design for Deep Learning EDGE Inference, which can deploy at any FPGA device including Xilinx Zynq-7020 (a good choice for production). Actually, not just only a TPU logic design, the ***Free TPU*** also include a Deep Learning Inference Framework ***supporting all caffe layers***, which can run at any ARM CPU (such as the ARM A9 of Zynq-7020). TPU and CPU co-work with each other under the schedule of the Deep Learning Inference Framework (any order of alternation). Then, you can do anything you want with *FREE!* (We release the ***Free TPU*** with MIT LICENSE). More details, please visit http://www.embedeep.com
+# FREE TPU for FPGA
+***Free TPU*** is the free version of a commercial TPU design for Deep Learning EDGE Inference, which can deploy at any FPGA device including Xilinx Zynq-7020 or Kintex7-160T (both good choices for production). Actually, not just only a TPU logic design, the ***Free TPU*** also include the EEP Accelerating Framework ***supporting all caffe layers***, which can run at any CPU (such as the ARM A9 of Zynq-7020 or INTEL/AMD). TPU and CPU co-work with each other under the schedule of the Deep Learning Inference Framework (any order of alternation). Then, you can do anything you want with *FREE!* (We release the ***Free TPU*** with MIT LICENSE). After a comprehensive pressure testing, we are finally ready to formally release the FREE-TPU with commercial quality. Enjoy it!<br>More details, please visit http://www.embedeep.com
+<div align=center><img src="wiki/FREE-TPU.gif"><br>FPGA demo for FREE-TPU
+</div>
 
-## Supporting Layers
-Layer Type|Device|Limitation|Notes
-:---:|:---:|:---:|:---:
-Convolution|TPU|kernel<=32,stride<=8
-Depthwise Convolution|TPU|kernel<=32,stride<=8
-Fully connected|TPU|No
-MAX/AVE Pooling|TPU|kernel<=32,stride<=8
-Batch Normalization|TPU|No
-Scale|TPU|No
-SUM/MUL/MAX Element-wise|TPU|No
-Concatenation|TPU|No
-Relu|TPU|No
-Prelu|TPU|No
-Others|CPU|No|All Layers in CAFFE
+## System Structure
+<div align=center><img src="wiki/system_structure_github.png" width=800><br>Application environment of FREE-TPU
+</div> 
 
-## Software Development Kits 
-***Free TPU SDK*** imports the trained model from CAFFE directly to generate the BIN file. No further re-training or fine-tuning necessary. However, we DO NOT release the SDK for FREE TPU yet. Instead, we provide the BIN and corresponding MODEL file of typical NN network. You can use the BIN to launch a NN algorithm (such as detection with YOLOV3 or segmentation with ICNet). Or, you also can ***train*** with your own Datasets based on the MODEL, and generate your ***own BIN*** through a simple tool (release later) by merging *your-own caffe-model* and the *old BIN*. Then, your own BIN is available for any usage!
+## HARD IP CORE
+||FREE-TPU|EEP-TPU-FS020|EEP-TPU-FS035-152|EEP-TPU-FS035-272|EEP-TPU-FS035-528|EEP-TPU-FS035-1040
+:---:|:---:|:---: |:---:|:---:|:---:|:---:
+Binding Hardware|No|EEP-TPU-M020|EEP-TPU-EV-S Kits|EEP-TPU-EV-S Kits|EEP-TPU-EV-S Kits|EEP-TPU-EV-S Kits
+Target Device|Xilinx xc7z020-1|Xilinx xc7z020-1|Xilinx xc7z035-2|Xilinx xc7z035-2|Xilinx xc7z035-2|Xilinx xc7z035-2
+FPGA utilization|LUT: 62.96% <br>FF: 56.08% <br>BRAM: 80.00% <br>DSP: 73.18%|LUT: 66.12% <br>FF: 56.92% <br>BRAM: 80.00% <br>DSP: 73.18%|LUT: 26.54% <br>FF: 23.34% <br>BRAM: 37.40% <br>DSP: 17.89%|LUT: 26.52% <br>FF: 23.35% <br>BRAM: 37.40% <br>DSP: 31.89%|LUT: 28.89% <br>FF: 24.02% <br>BRAM: 37.40% <br>DSP: 59.67%|LUT: 69.85% <br>FF: 40.90% <br>BRAM: 40.60% <br>DSP: 100%
+TPU Layer set|LS-V1.0|LS-V2.0|LS-V2.0|LS-V2.0|LS-V2.0|LS-V2.0
+FP16 MACs|152|152|152|272|528|1040
+Frequency|100 MHz|100 MHz|200 MHz|200MHZ|200MHZ|200MHZ
+AXI port|1|1|2|2|2|2
+Off-chip DDR bandwidth|12.8 Gbps (Shared)|12.8 Gbps (Shared)|51.2 Gbps (Dedicated)|51.2 Gbps (Dedicated)|51.2 Gbps (Dedicated)|51.2 Gbps (Dedicated)
+On-chip Memory|256 KByte|256 KByte|512 KByte|512KByte|512KByte|512KByte
+OS|Linux|Linux|Linux|Linux|Linux|Linux
+Compiler|NO|YES|YES|YES|YES|YES
+EEP Accelerating Framework|YES|YES|YES|YES|YES|YES
+EEP NNAPI|YES|YES|YES|YES|YES|YES
+Android NNAPI|NO|*Release in future*|*Release in future*|*Release in future*|*Release in future*|*Release in future*
+License|MIT|Commercial|Commercial|Commercial|Commercial|Commercial
 
-## Difference between FREE TPU and Commercial EEP TPU
-||FREE TPU|EEP TPU
-:---:|:---:|:---:
-Target Device|Zynq FPGA|any FPGA and ASIC
-TPU supporting Layers|10|35
-MACs|152 FP16|Configurable<br>(typical 576 FP16 or INT8)
-Frequency|50 MHz|200 MHzS
-AXI port|1|2
-Memory Model|Shared|Shared or Dedicated
-On Chip Memory|256 KByte|Configurable<br>(typical 512 KByte)
-Functionality|Same|Same
-API|Same|Same
 
 From the view of users, *Free-TPU* and *EEP-TPU* has the same functionality, but with different inference time. If the inference time of *Free-TPU* is NOT good enough for your applications, you can contact us in any time. We will be happy to share our experience about algorithm, software or hardware with you.
+### TIPS
++ We plan to release two implementations targeted to two different FPGA chip: Xilinx Zynq-7020 and Xilinx Kintex7-160T. For now, the implementation for Xilinx Zynq-7020 has been released.
++ For FREE-TPU users who do not have a FPGA board with Xilinx Zynq-7020 chip, you are free to choose a FPGA board according to the supporting board lists declared at the Appendix section of [Free-TPU-OS](https://github.com/embedeep/Free-TPU-OS), or you can choose our official $99 EEP-TPU-M020 board.
++ For users who want to try any other NN network, you can send the corresponding **.prototxt and **.caffemode to us for BIN generation, or, our official $99 EEP-TPU-M020 board that including a EEP-TPU-Compiler software is ready for you. 
++ For advanced users who intend to modify the logic design in FPGA, including add new IP in PL side of Zynq (such as a video DMA), use PCIe based hardware scheme or configure the EEP-TPU with different params, we are providing three kinds of $999 EEP-TPU-EV-S/A/H Kits that including one Soft IP which CAN be merged into user design through encrypted code.
++ For advanced users who intend to modify the hardware but had limited experience, we are providing the $1999/year technical support that including the EEP-TPU hardware customization service.
++ Please visit http://www.embedeep.com for more info, which including the technical detail of *FREE TPU*, the definition of *Layer set*, and the product of EMBEDEEP which could be helpful for your research and development.
+
+## Benchmark 
+||667MHZ ARM A9<br>with NEON|FREE-TPU<br>on EEP-TPU-M020|EEP-TPU-FS020<br>on EEP-TPU-M020| EEP-TPU-FS035-152<br>on EEP-TPU-EV-S|EEP-TPU-FS035-272<br>on EEP-TPU-EV-S|EEP-TPU-FS035-528<br>on EEP-TPU-EV-S
+:---:|:---:|:---: |:---: |:---: |:---:|:---:
+FP16 computing resource|NA|30.4 GOPS|30.4 GOPS|60.8 GOPS|108.8 GOPS|211.2 GOPS
+on-chip memory|NA|256 KByte|256 KByte|512 KByte|512 KByte|2.5 Mbyte
+off-chip DDR bandwidth|33 Gbps<br>(Shared)|12.8 Gbps<br>(Shared)|12.8 Gbps<br>(Shared)|51.2 Gbps<br>(Dedicated)|51.2 Gbps<br>(Dedicated)|51.2 Gbps<br>(Dedicated)
+[lenet-5](Deep_Learning_Algorithm/models/)| 4.6ms | 1.359ms | 1.345ms |   0.703ms | 0.657ms | 0.619ms |
+[Mobilenet-V1](Deep_Learning_Algorithm/models/)| 768ms | 74.754ms | 74.739ms |  40.731ms | 30.196ms | 25.633ms |
+[Mobilenet-V1 with mergeBN](Deep_Learning_Algorithm/models/)| 679.6ms | 66.571ms | 66.564ms |  34.391ms | 23.883ms | 19.317ms |
+[Mobilenet-V2](Deep_Learning_Algorithm/models/)| 810ms | 83.896ms | 83.867ms |  48.468ms | 41.337ms | 38.470ms |
+[Mobilenet-V2 with mergeBN](Deep_Learning_Algorithm/models/)| 660ms | 69.540ms | 69.541ms |  37.290ms | 30.153ms | 27.255ms |
+[Squeezenet-v1.1](Deep_Learning_Algorithm/models/)| 416.4ms | 46.216ms | 46.235ms |  25.356ms | 17.890ms | 14.895ms |
+[Resnet-50 with mergeBN](Deep_Learning_Algorithm/models)| 4753ms | 367.696ms | 367.674ms | 188.413ms | 115.299ms | 82.900ms |
+[Inception-V3](Deep_Learning_Algorithm/models/)| 21493.7ms | 516.362ms | 516.539ms | 265.305ms | 154.225ms | 102.281ms |
+[Mobilenet-YOLOV3](Deep_Learning_Algorithm/models/)| 2058.6ms | 207.849ms | 179.422ms |  91.311ms | 59.827ms | 44.578ms |
+[ICNet](Deep_Learning_Algorithm/models/)| 3347.8ms | 1342.354ms | 228.263ms | 122.257ms | 83.348ms | 64.173ms |
++ FREE-TPU and EEP-TPU all use FP16 model to get the same accuracy with the original FP32 model.
++ The inference time includes the time to fetch an image from HOST memory, computing, and export the result to HOST memory.
+
+## Software Development Kits 
+***Free TPU SDK*** imports the trained model from CAFFE (**.prototxt and **.caffemodel) directly to generate the BIN file. No further re-training or fine-tuning necessary. We DO NOT release the SDK for FREE TPU yet. Instead, we provide the BIN file of typical NN network for you. For users who want to try other NN network, you can send the corresponding **.prototxt and **.caffemodel to us for BIN generation.
+
+## EEP NNAPI
+By using ***EEP NNAPI***, users can develop your own APPs with TPU inference capability. <br>We will release the ***EEP NNAPI*** In the next coming update.
 
 ## Development Resource 
-### NN network 
-Network MODEL|BIN|Inference time<br>(50MHZ FREE TPU)|Inference time<br>(200MHZ EEP TPU)|Inference time<br>(800MHZ ARM A9x1 within Zynq)
-:---:|:---:|:---:|:---:|:---:
-[lenet-5](Deep_Learning_Algorithm/models/lenet-5.prototxt)|[BIN](Deep_Learning_Algorithm/bins/)
-[MobileNetV1](Deep_Learning_Algorithm/models/mobilenet_v1.prototxt)|[BIN](Deep_Learning_Algorithm/bins/)
-[MobileNetV2](Deep_Learning_Algorithm/models/mobilenet_v2.prototxt)|[BIN](Deep_Learning_Algorithm/bins/)
-[InceptionV3](Deep_Learning_Algorithm/models/inception_v3.prototxt)|not ready
-[Resnet-50](Deep_Learning_Algorithm/models/ResNet_50.prototxt)|not ready
-[MobileNet_YOLOV3](Deep_Learning_Algorithm/models/mobilenet_yolov3_lite.prototxt)|not ready
-[ICNet](Deep_Learning_Algorithm/models/icnet.prototxt)|not ready
-
-For comparison, you can refer to the [HLS implementation of lenet-5](https://github.com/changwoolee/lenet5_hls), which run at 100MHZ, use almost all resource of zynq-7020 FPGA, and only x3.63 faster than cpu (800MHZ ARM A9x1 within Zynq)
-
-### FPGA bit
-FPGA device|BITS|Version
+### FPGA BIN
+FPGA device|BIN|Version
 :---:|:---:|:---:
-Xilinx Zynq-7020|[BIT](FPGA_Bits/zynq-7020)|v0.6.0
+Xilinx Zynq-7020|[boot.BIN](https://github.com/embedeep/Free-TPU-OS/tree/master/BOOTbin)|v0.6.0-r28-p16
 
 FREE TPU DO NOT use any PIN from PL side of Zynq chip. Hence, in general, you can use any board including a Xilinx Zynq-7000 series chip to run the FREE TPU. If you are using other FPGA chips, please let us know through issues, we are happy to release corresponding BIT file if possible.
 ### Run steps
-1. Clone this repository：
+1. Clone this repository
 ```
 git clone https://github.com/embedeep/Free-TPU
 ```
 
-2. If you already have a Runnable Linux OS meeting the requirements declared in the [requirements.txt](Runtime_Software/requirments.txt) , copy necessary files (and replace the old one) to the SD card for Zynq system. If not, please refer to the steps from ***[Free-TPU-OS](https://github.com/embedeep/Free-TPU-OS)*** to prepare the Linux OS. 
+2. Launch Linux OS (please refer to [Free-TPU-OS](https://github.com/embedeep/Free-TPU-OS)).
+
+3. Connect the system through SSH or UART, and execute the demo application as follow (more detail about demo application, please refer to [Runtime_Software](/Runtime_Software/Readme.md) )
 ```
-copy bits/zynq_7020/* root_of_sd_card/boot 
-(If you are using different chip, please replace zynq_7020 with corresponding chip name)
+eepdemo_arm  --bin BIN_file --image IMG_file
 ```
 
-3. Insert the SD card into Zynq board, launch system, connect the system through SSH, and execute the run command
-```
-free_tpu_runtime --bin BIN_file --image IMG_file
-```
-
-4. If everything right, you will see the result through terminal, saved image, or remote PC (through python socket, please refer to [Remote Terminal](Runtime_Software/Remote_Terminal/)). Enjoy!
+4. If everything right, you will see the result through terminal or saved image. Enjoy!
 
 ## License
 MIT LICENSE
