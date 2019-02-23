@@ -40,7 +40,7 @@ From the view of users, *Free-TPU* and *EEP-TPU* has the same functionality, but
 ||667MHZ ARM A9<br>with NEON|FREE-TPU<br>on EEP-TPU-M020|EEP-TPU-FS020<br>on EEP-TPU-M020| EEP-TPU-FS035-152<br>on EEP-TPU-EV-S|EEP-TPU-FS035-272<br>on EEP-TPU-EV-S|EEP-TPU-FS035-528<br>on EEP-TPU-EV-S
 :---:|:---:|:---: |:---: |:---: |:---:|:---:
 FP16 computing resource|NA|30.4 GOPS|30.4 GOPS|60.8 GOPS|108.8 GOPS|211.2 GOPS
-on-chip memory|NA|256 KByte|256 KByte|512 KByte|512 KByte|2.5 Mbyte
+on-chip memory|NA|256 KByte|256 KByte|512 KByte|512 KByte|512 KByte
 off-chip DDR bandwidth|33 Gbps<br>(Shared)|12.8 Gbps<br>(Shared)|12.8 Gbps<br>(Shared)|51.2 Gbps<br>(Dedicated)|51.2 Gbps<br>(Dedicated)|51.2 Gbps<br>(Dedicated)
 [lenet-5](Deep_Learning_Algorithm/models/)| 4.6ms | 1.359ms | 1.345ms |   0.703ms | 0.657ms | 0.619ms |
 [Mobilenet-V1](Deep_Learning_Algorithm/models/)| 768ms | 74.754ms | 74.739ms |  40.731ms | 30.196ms | 25.633ms |
