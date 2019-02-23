@@ -47,21 +47,17 @@ There are only a few Free-TPU bin files (*lenet / mobilenet_v1 / squeezenet*) on
 You can download **ALL Free-TPU bin files** from **[BaiDu Cloud](https://pan.baidu.com/s/1M3mcz8XVxJHIfwsAPLV0iw)** (Extraction code: w462).
 
 ### Examples
-Suppose the demo have 3 folders: " images, tpubin, eepdemo ", and we are in eepdemo folder in command line.
+Suppose the demo have 3 folders: " images, tpubin, eepdemo ", and we are in eepdemo folder in command line. Take "*freetpu_a1c8*" for example, you could change the bin file according to your board.
 
 - Test 1 image: 
 ```
-sudo ./eepdemo_arm --bin ../tpubin/freetpu_a1c8/mobilenet1/nobn/eeptpu.bin --image ../images/ILSVRC2012_val_00000049.JPEG --net mobilenet
-sudo ./eepdemo_arm --bin ../tpubin/freetpu_a1c8/mobilenet1/nobn/eeptpu.bin --image ../images/ILSVRC2012_val_00000049.JPEG --label 717 --net mobilenet
-sudo ./eepdemo_arm --bin ../tpubin/freetpu_a1c8/mobilenet1/nobn/eeptpu.bin --image ../images/ILSVRC2012_val_00000049.JPEG --label 717 --net mobilenet --crop 1
+sudo ./eepdemo_arm --bin ../tpubin/freetpu_a1c8/mobilenet1/nobn/eeptpu.bin --image ../images/classify/ILSVRC2012_val_00000049.JPEG --label 717 --net mobilenet --crop 1
 ```
 - Test all images in folder:
 ```
-sudo ./eepdemo_arm --bin ../tpubin/freetpu_a1c8/mobilenet1/nobn/eeptpu.bin --image image_folder_path --label label_file_path --net mobilenet --crop 1
+sudo ./eepdemo_arm --bin ../tpubin/freetpu_a3c8/mobilenet1/nobn/eeptpu.bin --image ../images/classify/ --label ../images/classify/val.txt --net mobilenet --crop 1
 ```
 *Note*: The demo application can pre-read all images in the folder by using '--prefetch 1', but do not place too many images in the folder if using prefetch.
 
 ### Running Environment
 Free-TPU demo application runs in Linux(ARM-v7 architecture), compatible with raspberry pi file system.
-
-
