@@ -6,50 +6,9 @@ layer {
   input_param { shape: { dim: 1 dim: 1 dim: 28 dim: 28 } }
 }
 layer {
-  name: "conv11"
-  type: "Convolution"
-  bottom: "data"
-  top: "conv11"
-  param {
-    lr_mult: 1
-  }
-  param {
-    lr_mult: 2
-  }
-  convolution_param {
-    num_output: 30
-    kernel_size: 5
-    stride: 1
-    weight_filler {
-      type: "xavier"
-    }
-    bias_filler {
-      type: "constant"
-    }
-  }
-}
-layer {
-  name: "relu11"
-  type: "ReLU"
-  bottom: "conv11"
-  top: "conv11"
-}
-layer {
-  name: "pool11"
-  type: "Pooling"
-  bottom: "conv11"
-  top: "pool11"
-  pooling_param {
-    pool: MAX
-    kernel_size: 2
-    stride: 2
-  }
-}
-
-layer {
   name: "conv1"
   type: "Convolution"
-  bottom: "pool11"
+  bottom: "data"
   top: "conv1"
   param {
     lr_mult: 1
@@ -58,7 +17,7 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 15
+    num_output: 20
     kernel_size: 5
     stride: 1
     weight_filler {
@@ -68,12 +27,6 @@ layer {
       type: "constant"
     }
   }
-}
-layer {
-  name: "relu1"
-  type: "ReLU"
-  bottom: "conv1"
-  top: "conv1"
 }
 layer {
   name: "pool1"
@@ -86,11 +39,44 @@ layer {
     stride: 2
   }
 }
-
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 50
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "pool2"
+  type: "Pooling"
+  bottom: "conv2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
 layer {
   name: "ip1"
   type: "InnerProduct"
-  bottom: "pool1"
+  bottom: "pool2"
   top: "ip1"
   param {
     lr_mult: 1
@@ -99,7 +85,7 @@ layer {
     lr_mult: 2
   }
   inner_product_param {
-    num_output: 30
+    num_output: 500
     weight_filler {
       type: "xavier"
     }
@@ -136,9 +122,8 @@ layer {
   }
 }
 layer {
-  name: "relu1"
-  type: "ReLU"
+  name: "prob"
+  type: "Softmax"
   bottom: "ip2"
-  top: "ip2"
+  top: "prob"
 }
-
